@@ -55,8 +55,15 @@ var ErrorCodes = {
     249: "An Invoice MAY have an Invoice Level Net Amount.",//optional, is it taxExclusiveAmount?
     250: "An Invoice MAY have a Related Invoice Identifier.",//optional, but doesn't clear what property it is
     251: "An Invoice MAY have one or more Document References.",//optional, despatchDocumentReference, receiptDocumentReference, contractDocumentReference, additionalDocumentReference
-    252: "An Invoice Level Total Amount MUST be greater than 0.",//optional, is it taxExclusiveAmount?
-    253: "An Invoice Line MAY have a Net Amount."//optional, is it invoiceLine.lineExtensionAmount?
+    252: "An Invoice Level Total Amount MUST be greater than 0.",//invoice.legalMonetaryTotal.payableAmount
+    253: "An Invoice Line MAY have a Net Amount.",//optional, invoice.invoiceLine[i].lineExtensionAmount
+    254: "An Invoice Line Extended Amount after all allowances and charges MUST NOT be negative.",//invoiceLine[i].lineExtensionAmount - SUM(invoiceLine.allowanceCharge[j].amount if !invoiceLine.allowanceCharge[j].chargeIndicator) + SUM(invoiceLine.allowanceCharge[j].amount if invoiceLine.allowanceCharge[j].chargeIndicator)
+    255: "An Invoice Line Price MUST be 0 or more.",//invoiceLine[i].price.priceAmount >= 0
+    256: "An Invoice Line Item MUST have a Net Price.",//invoiceLine[i].lineExtensionAmount is required
+    257: "An Invoice Line MAY have a Quantity.",//optional, invoiceLine[i].invoicedQuantity
+    258: "An Invoice MAY have an Allowance Rate and Base Amount at Invoice Level.",//what is an invoice allowance rate and base amount?
+    259: "An Invoice Level Allowance MUST be greater than 0.",//optional, is it taxExclusiveAmount?
+
 }
 
 module.exports = ErrorCodes;

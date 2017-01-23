@@ -31,6 +31,12 @@ function validate(invoice, next) {
         errorCode = validate246(invoice)
     if (!errorCode)
         errorCode = validate252(invoice)
+    if (!errorCode)
+        errorCode = validate254(invoice)
+    if (!errorCode)
+        errorCode = validate255(invoice)
+    if (!errorCode)
+        errorCode = validate259(invoice)
     if (errorCode) {
         return ErrorBuilder(errorCode);
     }
@@ -142,10 +148,12 @@ function validate242(invoice) {
         invoiceLevelAllowanceAmount = invoice.legalMonetaryTotal.allowanceTotalAmount;
     }
     if (invoice.allowanceCharge) {
-        var invoiceAllowanceCharge = invoice.allowanceCharge[j];
-        if (invoiceAllowanceCharge.amount) {
-            if (!invoiceAllowanceCharge.chargeIndicator) {
-                sumOfAllowanceAmounts += invoiceAllowanceCharge.amount;
+        for (i in invoice.allowanceCharge) {
+            var invoiceAllowanceCharge = invoice.allowanceCharge[i];
+            if (invoiceAllowanceCharge.amount) {
+                if (!invoiceAllowanceCharge.chargeIndicator) {
+                    sumOfAllowanceAmounts += invoiceAllowanceCharge.amount;
+                }
             }
         }
     }
@@ -178,10 +186,12 @@ function validate243(invoice) {
         invoiceLevelChargeTotalAmount = invoice.legalMonetaryTotal.chargeTotalAmount;
     }
     if (invoice.allowanceCharge) {
-        var invoiceAllowanceCharge = invoice.allowanceCharge[j];
-        if (invoiceAllowanceCharge.amount) {
-            if (invoiceAllowanceCharge.chargeIndicator) {
-                sumOfChargeAmounts += invoiceAllowanceCharge.amount;
+        for (i in invoice.allowanceCharge) {
+            var invoiceAllowanceCharge = invoice.allowanceCharge[i];
+            if (invoiceAllowanceCharge.amount) {
+                if (invoiceAllowanceCharge.chargeIndicator) {
+                    sumOfChargeAmounts += invoiceAllowanceCharge.amount;
+                }
             }
         }
     }
@@ -290,12 +300,68 @@ function validate246(invoice) {
 function validate252(invoice) {
     if (invoice && invoice.legalMonetaryTotal && invoice.legalMonetaryTotal.hasOwnProperty('payableAmount')) {
         var payableAmount = invoice.legalMonetaryTotal.payableAmount;
-        if(payableAmount<=0)
+        if (payableAmount <= 0)
         //TODO: build a complete error
             return 252;
     }
 }
 
+function validate254(invoice) {
+    //An Invoice Line Extended Amount after all allowances and charges MUST NOT be negative.
+    if (invoice && invoice.invoiceLine) {
+        for (i in invoice.invoiceLine) {
+            var invoiceLine = invoice.invoiceLine[i];
+            if (invoiceLine.lineExtensionAmount) {
+                var lineExtensionAmount = invoiceLine.lineExtensionAmount;
+                if (invoiceLine.allowanceCharge) {
+                    for (j in invoiceLine.allowanceCharge) {
+                        var invoiceLineAllowanceCharge = invoiceLine.allowanceCharge[j];
+                        if (invoiceLineAllowanceCharge.amount) {
+                            if (invoiceLineAllowanceCharge.chargeIndicator) {
+                                lineExtensionAmount += invoiceLineAllowanceCharge.amount;
+                            } else {
+                                lineExtensionAmount -= invoiceLineAllowanceCharge.amount;
+                            }
+                        }
+                    }
+                }
+                if (lineExtensionAmount < 0) {
+                    return 254;
+                }
+            }
+        }
+    }
+}
+
+function validate255(invoice) {
+    //An Invoice Line Price MUST be 0 or more.
+    if (invoice && invoice.invoiceLine) {
+        for (i in invoice.invoiceLine) {
+            var invoiceLine = invoice.invoiceLine[i];
+            if (invoiceLine.price && invoiceLine.price.priceAmount) {
+                var priceAmount = invoiceLine.price.priceAmount;
+                if (priceAmount < 0) {
+                    return 255;
+                }
+            }
+        }
+    }
+}
+
+function validate259(invoice) {
+    //An Invoice Line Price MUST be 0 or more.
+    if (invoice.allowanceCharge) {
+        for (i in invoice.allowanceCharge) {
+            var invoiceAllowanceCharge = invoice.allowanceCharge[i];
+            if (invoiceAllowanceCharge.amount) {
+                if (!invoiceAllowanceCharge.chargeIndicator) {
+                    if (invoiceAllowanceCharge.amount < 0)
+                        return 259
+                }
+            }
+        }
+    }
+}
 
 
 module.exports = validate

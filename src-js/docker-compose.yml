@@ -1,6 +1,8 @@
-web:
-  build: .
-  # volumes:
-  #   - "./:/src/"
-  ports:
-    - "3030:3000"
+version: '2'
+services:
+  web:
+    build: .
+    image: testpoint-bill
+    container_name: testpoint-bill
+    ports:
+      - "3031:3000"

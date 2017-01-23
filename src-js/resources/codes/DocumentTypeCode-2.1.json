@@ -1,0 +1,115 @@
+{
+  "ListURI": "https://github.com/ausdigital/code-lists/tree/master/codes/core/DocumentTypeCode-2.1.json",
+  "SchemeIdentification": {
+    "listAgencyName": "United Nations Economic Commission for Europe",
+    "listSchemeURI": "urn:un:unece:uncefact:codelist:standard:UNECE:DocumentNameCodeAccounting:D10B",
+    "ListName": "DocumentTypeCode",
+    "listAgencyID": "UN/ECE",
+    "listVersionID": "D10B"
+  },
+  "UsageContext": {
+    "ProcessID": [
+      "urn:resources.digitalbusinesscouncil.com.au:dbc:einvoicing:ver1.0"
+    ]
+  },
+  "CodeList": {
+    "Codes": [
+      {
+        "Code": "80",
+        "Name": "Debit note related to goods or services"
+      },
+      {
+        "Code": "81",
+        "Name": "Credit note related to goods or services"
+      },
+      {
+        "Code": "105",
+        "Name": "Purchase order"
+      },
+      {
+        "Code": "220",
+        "Name": "Order"
+      },
+      {
+        "Code": "223",
+        "Name": "Lease order"
+      },
+      {
+        "Code": "224",
+        "Name": "Rush order"
+      },
+      {
+        "Code": "245",
+        "Name": "Delivery release"
+      },
+      {
+        "Code": "315",
+        "Name": "Contract"
+      },
+      {
+        "Code": "320",
+        "Name": "Acknowledgement of order"
+      },
+      {
+        "Code": "325",
+        "Name": "Proforma invoice"
+      },
+      {
+        "Code": "326",
+        "Name": "Partial invoice"
+      },
+      {
+        "Code": "380",
+        "Name": "Commercial invoice"
+      },
+      {
+        "Code": "388",
+        "Name": "Tax invoice"
+      },
+      {
+        "Code": "389",
+        "Name": "Self-billed invoice"
+      },
+      {
+        "Code": "393",
+        "Name": "Factored invoice"
+      },
+      {
+        "Code": "394",
+        "Name": "Lease invoice"
+      },
+      {
+        "Code": "395",
+        "Name": "Consignment invoice"
+      },
+      {
+        "Code": "398",
+        "Name": "Cross docking despatch advice"
+      },
+      {
+        "Code": "399",
+        "Name": "Transshipment despatch advice"
+      },
+      {
+        "Code": "455",
+        "Name": "Extended credit advice"
+      },
+      {
+        "Code": "481",
+        "Name": "Remittance advice"
+      },
+      {
+        "Code": "533",
+        "Name": "Original accounting voucher"
+      },
+      {
+        "Code": "534",
+        "Name": "Copy accounting voucher"
+      },
+      {
+        "Code": "640",
+        "Name": "Delivery order"
+      }
+    ]
+  }
+}

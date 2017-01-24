@@ -39,6 +39,8 @@ request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/spe
 request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/spec/v1.0.0/Response.json').pipe(fs.createWriteStream('resources/schemas/Response.json'));
 
 request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/codes/core/DocumentTypeCode-2.1.json').pipe(fs.createWriteStream('resources/codes/DocumentTypeCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/codes/core/AllowanceChargeReasonCode-2.1.json').pipe(fs.createWriteStream('resources/codes/AllowanceChargeReasonCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/codes/core/PaymentMeansCode-2.1.json').pipe(fs.createWriteStream('resources/codes/PaymentMeansCode-2.1.json'));
 
 
 // catch 404 and forward to error handler

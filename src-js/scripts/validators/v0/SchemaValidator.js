@@ -15,20 +15,21 @@ function validate(document, reqLinkHeader, next) {
     } else if (document["ApplicationResponse"]) {
         documentType = "Response";
     }
-    switch (documentType){
+    switch (documentType) {
         case "Invoice":
-            if (linkHeader.describedby) {
+            if (linkHeader && linkHeader.describedby) {
                 //TODO: add a check for the attached schema
             }
             jsonSchema = JSON.parse(fs.readFileSync('./resources/schemas/Invoice.json').toString());
             break;
         case "Response":
-            if (linkHeader.describedby) {
+            if (linkHeader && linkHeader.describedby) {
                 //TODO: add a check for the attached schema
             }
             jsonSchema = JSON.parse(fs.readFileSync('./resources/schemas/Response.json').toString());
             break;
-        default: console.error("Unknown document type")
+        default:
+            console.error("Unknown document type")
     }
 
     var validate = ajv.compile(jsonSchema);

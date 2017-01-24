@@ -4,10 +4,10 @@
 var ErrorCodes = {
     100: "Document is not valid against its schema.",
     101: "Missing required request parameter.",
-    201: "An Invoice of more than $82.50 (including GST) to a GST-registered Buyer MUST be a Tax Invoice.",//unclear
+    201: "An Invoice of more than $82.50 (including GST) to a GST-registered Buyer MUST be a Tax Invoice.",
     202: "An Invoice must contain a Document Type Code.",//unclear what is a Document Type Code
-    203: "An Invoice MUST contain the Supplier’s Business Name or the ABN of the Supplier.",
-    204: "An Invoice with a Total Amount greater than $1000 MUST have either the Buyer's Business Name or the ABN of the Buyer.",
+    203: "An Invoice MUST contain the Supplier’s Business Name or the ABN of the Supplier.",//implemented
+    204: "An Invoice with a Total Amount greater than $1000 MUST have either the Buyer's Business Name or the ABN of the Buyer.",//implemented
     205: "An Invoice MAY contain the ABN plus a GST branch number for Suppliers with GST branches registered with the ATO.", //optional
     206: "An Invoice MUST contain an Invoice Issue Date.", //covered by json schema
     207: "An Invoice Line MUST have a Description.", //Invoice line has a string property "id" which is required, and an array of strings property "note" which is optional. what invoice line description supposed to be - id or note?
@@ -62,7 +62,31 @@ var ErrorCodes = {
     256: "An Invoice Line Item MUST have a Net Price.",//invoiceLine[i].lineExtensionAmount is required
     257: "An Invoice Line MAY have a Quantity.",//optional, invoiceLine[i].invoicedQuantity
     258: "An Invoice MAY have an Allowance Rate and Base Amount at Invoice Level.",//what is an invoice allowance rate and base amount?
-    259: "An Invoice Level Allowance MUST be greater than 0.",//optional, is it taxExclusiveAmount?
+    259: "An Invoice Level Allowance MUST be greater than 0.",//implemented, invoice.allowanceCharge[i].amount > 0 where charge == false
+    260: "An Invoice Level Allowance MAY have a GST Category.",//optional, invoice.allowanceCharge[i].taxCategory
+    261: "An Invoice Level Allowance Reason Description MUST match the Invoice Level Allowance Reason Code (if any).",//invoice.allowanceCharge[i].allowanceChargeReasonCode and invoice.allowanceCharge[i].allowanceChargeReason should match - checking using indexOf
+    262: "An Invoice MAY have a Charge Rate and Base Amount at Invoice Level.",//optional
+    263: "An Invoice Level Charge MUST be greater than 0.",//implemented, invoice.allowanceCharge[i].amount > 0 where charge == true
+    264: "An Invoice Level Charge MAY have a GST Category.",//optional, invoice.allowanceCharge[i].taxCategory
+    265: "An Invoice Level Charge Reason Description MUST match the Invoice Level Charge Reason Code (if any).",//invoice.allowanceCharge[i].allowanceChargeReasonCode and invoice.allowanceCharge[i].allowanceChargeReason should match - checking using indexOf
+    266: "An Invoice Line MAY have an Allowance Rate and Base Amount.",//what is an invoice line allowance rate and base amount?
+    267: "An Invoice Line Allowance MUST be greater than 0.",//implemented, invoice.invoiceLine[i].allowanceCharge[j].amount > 0 where chargeIndicator == false
+    268: "An Invoice Line Allowance MUST have an Allowance Reason Description.",//optional, invoice.invoiceLine[i].allowanceCharge[j].allowanceChargeReason where chargeIndicator == false, make it required?
+    269: "An Invoice Line Allowance Reason Description MUST match the Invoice Line Allowance Reason Code (if any).",//invoice.invoiceLine[i].allowanceCharge[i].allowanceChargeReasonCode and invoice.invoiceLine[i].allowanceCharge[i].allowanceChargeReason should match - checking using indexOf
+    270: "An Invoice Line MAY have a Charge Rate and Base Amount.",//what is an invoice line charge rate and base amount?
+    271: "An Invoice Line Charge MUST be greater than 0.",//implemented, invoice.invoiceLine[i].allowanceCharge[j].amount > 0 where chargeIndicator == true
+    272: "An Invoice Line Charge MUST have a Charge Reason Description.",//optional, make it required?
+    273: "An Invoice Line Charge Reason Description MUST match the Invoice Line Charge Reason Code (if any).",//invoice.invoiceLine[i].allowanceCharge[i].allowanceChargeReasonCode and invoice.invoiceLine[i].allowanceCharge[i].allowanceChargeReason should match - checking using indexOf
+    274: "A Payment Means MUST have a valid Payment Means Type Code.",//code validation
+    275: "A Payment Means Financial Institution Account Identifier MUST have Financial Institution Identifier.",//invoice.paymentMeans[i].payeeFinancialAccount.id - make it required on json schema level
+    276: "A Payment Means for a card payment MUST state the last 4 to 6 digits of the Financial Institution Account Identifier.",//invoice.paymentMeans[i].payerFinancialAccount.id
+    277: "An Invoice MUST have a Payee Business Name if Payee Business Name is not the same as the Suppliers Business Name.",//unclear - how to check if a Payee Business Name is not the as the Suppliers Business Name if it is not provided
+
+    300: "A Tax Invoice for goods or services that do not all include GST (mixed supplies) shall indicate which goods or services do not include GST.",//unclear, need an example
+    //document type code == 389(RCTI)
+    400: "A Recipient Created Tax Invoice MUST contain either the Business Name or the ABN of the Buyer.",
+    401: "A Recipient Created Tax Invoice MUST contain the Payee Name if GST is payable.",//unclear - apply the rule if invoice.taxTotal[i].taxSubtotal[j].taxCategory.taxScheme == "GST" ?
+    402: "A Recipient Created Tax Invoice MAY contain the following statement: \"The recipient and the supplier declare that this agreement applies to supplies to which this tax invoice relates. The recipient can issue tax invoices in respect of these supplies. The supplier will not issue tax invoices in respect of these supplies. The supplier acknowledges that it is registered for GST and that it will notify the recipient if it ceases to be registered. The recipient acknowledges that it is registered for GST and that it will notify the supplier if it ceases to be registered for GST. Acceptance of this RCTI constitutes acceptance of the terms of this written agreement. Both parties to this supply agree that they are parties to an RCTI agreement. The supplier agrees to notify the recipient if the supplier does not wish to accept the proposed agreement within 21 days of receiving this document.\"",//optional
 
 }
 

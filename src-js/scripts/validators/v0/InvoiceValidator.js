@@ -4,13 +4,15 @@
 var fs = require('fs');
 var ErrorBuilder = require('./ErrorCodeBuilder')
 
-function validate(invoice, next) {
+function validate(invoice) {
     if (!invoice) {
         //TODO: build an error
         return
     }
 
-    var errorCode = validate203(invoice)
+    var errorCode = validate201(invoice)
+    if (!errorCode)
+        errorCode = validate203(invoice)
     if (!errorCode)
         errorCode = validate204(invoice)
     if (!errorCode)
@@ -36,9 +38,34 @@ function validate(invoice, next) {
     if (!errorCode)
         errorCode = validate255(invoice)
     if (!errorCode)
-        errorCode = validate259(invoice)
+        errorCode = validate259and263(invoice)
+    if (!errorCode)
+        errorCode = validate261and265(invoice)
+    if (!errorCode)
+        errorCode = validate267and271(invoice)
+    if (!errorCode)
+        errorCode = validate268and272(invoice)
+    if (!errorCode)
+        errorCode = validate269and273(invoice)
+    if (!errorCode)
+        errorCode = validate274(invoice)
+    if (!errorCode)
+        errorCode = validate275(invoice)
+    if (!errorCode)
+        errorCode = validate276(invoice)
     if (errorCode) {
         return ErrorBuilder(errorCode);
+    }
+}
+
+function validate201(invoice) {
+    if (invoice && invoice.legalMonetaryTotal && invoice.legalMonetaryTotal.payableAmount) {
+        var payableAmount = invoice.legalMonetaryTotal.payableAmount;
+        if (payableAmount >= 82.5) {
+            var code = invoice.invoiceTypeCode;
+            if (code != 388)
+                return 201
+        }
     }
 }
 
@@ -348,15 +375,213 @@ function validate255(invoice) {
     }
 }
 
-function validate259(invoice) {
-    //An Invoice Line Price MUST be 0 or more.
+function validate259and263(invoice) {
+    //An Invoice Level Allowance MUST be greater than 0.
     if (invoice.allowanceCharge) {
         for (i in invoice.allowanceCharge) {
             var invoiceAllowanceCharge = invoice.allowanceCharge[i];
-            if (invoiceAllowanceCharge.amount) {
-                if (!invoiceAllowanceCharge.chargeIndicator) {
-                    if (invoiceAllowanceCharge.amount < 0)
+            if (invoiceAllowanceCharge.hasOwnProperty('amount')) {
+                console.log('invoiceAllowanceCharge.amount', invoiceAllowanceCharge.amount)
+                if (invoiceAllowanceCharge.amount <= 0) {
+                    if (invoiceAllowanceCharge.chargeIndicator) {
+                        return 263
+                    }
+                    else {
                         return 259
+                    }
+                }
+            }
+        }
+    }
+}
+
+function validate261and265(invoice) {
+    //An Invoice Level Allowance Reason Description MUST match the Invoice Level Allowance Reason Code (if any).
+    if (invoice.allowanceCharge) {
+        for (i in invoice.allowanceCharge) {
+            var allowanceChargeReasonCode = undefined;
+            var invoiceAllowanceCharge = invoice.allowanceCharge[i];
+            var allowanceChargeReason = '';
+            if (invoiceAllowanceCharge.allowanceChargeReasonCode) {
+                allowanceChargeReasonCode = invoiceAllowanceCharge.allowanceChargeReasonCode;
+            }
+            if (invoiceAllowanceCharge.allowanceChargeReason) {
+                for (j in invoiceAllowanceCharge.allowanceChargeReason) {
+                    allowanceChargeReason += invoiceAllowanceCharge.allowanceChargeReason[j];
+                }
+            }
+            console.log('allowanceChargeReason - ' + allowanceChargeReason)
+            if (allowanceChargeReasonCode) {
+                var allowanceChargeReasonCodes = JSON.parse(fs.readFileSync('./resources/codes/AllowanceChargeReasonCode-2.1.json').toString());
+                for (i in allowanceChargeReasonCodes.CodeList.Codes) {
+                    if (allowanceChargeReasonCodes.CodeList.Codes[i].Code == allowanceChargeReasonCode) {
+                        console.log("Allowance charge reason code type: " + allowanceChargeReasonCode + " was found.")
+                        console.log("Allowance charge reason : " + allowanceChargeReasonCodes.CodeList.Codes[i].Name)
+                        if (allowanceChargeReasonCodes.CodeList.Codes[i].Name.indexOf(allowanceChargeReason) == -1) {
+                            console.log("Mismatch between allowance charge reason code and reason.");
+                            if (invoiceAllowanceCharge.chargeIndicator) {
+                                return 265
+                            } else {
+                                return 261;
+                            }
+                        }
+                    }
+                }
+                //console.log("Missing allowance charge reason code: " + allowanceChargeReasonCode)
+                //TODO: build a complete error
+            }
+        }
+    }
+}
+
+function validate267and271(invoice) {
+    //An Invoice Line Allowance/Charge MUST be greater than 0.
+    if (invoice && invoice.invoiceLine) {
+        for (i in invoice.invoiceLine) {
+            var invoiceLine = invoice.invoiceLine[i];
+            if (invoiceLine.lineExtensionAmount) {
+                var lineExtensionAmount = invoiceLine.lineExtensionAmount;
+                if (invoiceLine.allowanceCharge) {
+                    for (j in invoiceLine.allowanceCharge) {
+                        var invoiceLineAllowanceCharge = invoiceLine.allowanceCharge[j];
+                        if (invoiceLineAllowanceCharge.hasOwnProperty('amount')) {
+                            if (invoiceLineAllowanceCharge.amount <= 0) {
+                                if (invoiceLineAllowanceCharge.chargeIndicator) {
+                                    return 271
+                                }
+                                else {
+                                    return 267
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function validate268and272(invoice) {
+    //An Invoice Line Allowance/Charge MUST have an Allowance Reason Description.
+    if (invoice && invoice.invoiceLine) {
+        for (i in invoice.invoiceLine) {
+            var invoiceLine = invoice.invoiceLine[i];
+            if (invoiceLine.allowanceCharge) {
+                for (j in invoiceLine.allowanceCharge) {
+                    var invoiceLineAllowanceCharge = invoiceLine.allowanceCharge[j];
+                    if (!invoiceLineAllowanceCharge.allowanceChargeReason) {
+                        if (invoiceLineAllowanceCharge.chargeIndicator) {
+                            return 272
+                        }
+                        else {
+                            return 268
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function validate269and273(invoice) {
+    //An Invoice Line Allowance/Charge Reason Description MUST match the Invoice Line Charge Reason Code (if any).
+    //An Invoice Line Allowance/Charge Reason Description MUST match the Invoice Line Charge Reason Code (if any).
+    if (invoice && invoice.invoiceLine) {
+        for (i in invoice.invoiceLine) {
+            var invoiceLine = invoice.invoiceLine[i];
+            if (invoiceLine.allowanceCharge) {
+                for (i in invoiceLine.allowanceCharge) {
+                    var allowanceChargeReasonCode = undefined;
+                    var invoiceAllowanceCharge = invoiceLine.allowanceCharge[i];
+                    var allowanceChargeReason = '';
+                    if (invoiceAllowanceCharge.allowanceChargeReasonCode) {
+                        allowanceChargeReasonCode = invoiceAllowanceCharge.allowanceChargeReasonCode;
+                    }
+                    if (invoiceAllowanceCharge.allowanceChargeReason) {
+                        for (j in invoiceAllowanceCharge.allowanceChargeReason) {
+                            allowanceChargeReason += invoiceAllowanceCharge.allowanceChargeReason[j];
+                        }
+                    }
+                    console.log('allowanceChargeReason - ' + allowanceChargeReason)
+                    if (allowanceChargeReasonCode) {
+                        var allowanceChargeReasonCodes = JSON.parse(fs.readFileSync('./resources/codes/AllowanceChargeReasonCode-2.1.json').toString());
+                        for (i in allowanceChargeReasonCodes.CodeList.Codes) {
+                            if (allowanceChargeReasonCodes.CodeList.Codes[i].Code == allowanceChargeReasonCode) {
+                                console.log("Allowance charge reason code type: " + allowanceChargeReasonCode + " was found.")
+                                console.log("Allowance charge reason : " + allowanceChargeReasonCodes.CodeList.Codes[i].Name)
+                                if (allowanceChargeReasonCodes.CodeList.Codes[i].Name.indexOf(allowanceChargeReason) == -1) {
+                                    console.log("Mismatch between allowance charge reason code and reason.");
+                                    if (invoiceAllowanceCharge.chargeIndicator) {
+                                        return 273
+                                    } else {
+                                        return 269;
+                                    }
+                                }
+                            }
+                        }
+                        //console.log("Missing allowance charge reason code: " + allowanceChargeReasonCode)
+                        //TODO: build a complete error
+                    }
+                }
+            }
+        }
+    }
+}
+
+function validate274(invoice) {
+    //A Payment Means MUST have a valid Payment Means Type Code.
+    if (invoice && invoice.paymentMeans) {
+        for (i in invoice.paymentMeans) {
+            var paymentMeansCodes = JSON.parse(fs.readFileSync('./resources/codes/PaymentMeansCode-2.1.json').toString());
+            var paymentMeans = invoice.paymentMeans[i]
+            if (paymentMeans.paymentMeansCode) {
+                var code = paymentMeans.paymentMeansCode;
+                console.log("Looking up for payment means code: " + code)
+                for (i in paymentMeansCodes.CodeList.Codes) {
+                    if (paymentMeansCodes.CodeList.Codes[i].Code == code) {
+                        console.log("Payment Means code: " + code + " was found.")
+                        return
+                    }
+                }
+                console.log("Missing payment means code: " + code)
+                //TODO: build a complete error
+                return 274;
+            }
+        }
+    }
+}
+
+function validate275(invoice) {
+    //A Payment Means Financial Institution Account Identifier MUST have Financial Institution Identifier.
+    if (invoice && invoice.paymentMeans) {
+        for (i in invoice.paymentMeans) {
+            var paymentMeans = invoice.paymentMeans[i]
+            if (paymentMeans.payerFinancialAccount) {
+                if (!paymentMeans.payerFinancialAccount.id || paymentMeans.payerFinancialAccount.id == '')
+                    return 275;
+            }
+            if (paymentMeans.payeeFinancialAccount) {
+                if (!paymentMeans.payeeFinancialAccount.id || paymentMeans.payeeFinancialAccount.id == '')
+                    return 275;
+            }
+        }
+    }
+}
+
+function validate276(invoice) {
+    //A Payment Means for a card payment MUST state the last 4 to 6 digits of the Financial Institution Account Identifier.
+    if (invoice && invoice.paymentMeans) {
+        for (i in invoice.paymentMeans) {
+            var paymentMeans = invoice.paymentMeans[i]
+            if (paymentMeans.paymentMeansCode) {
+                var code = paymentMeans.paymentMeansCode;
+                if (code == "48") {//"Bank card."
+                    if (paymentMeans.payerFinancialAccount && paymentMeans.payerFinancialAccount.id) {
+                        var id = paymentMeans.payerFinancialAccount.id;
+                        if (id.length > 6 || id.length < 4 || id % 1 !== 0) {
+                            return 276
+                        }
+                    }
                 }
             }
         }

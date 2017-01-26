@@ -1,0 +1,315 @@
+{
+  "CodeList": {
+    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/ubl-json/codes/standard/PaymentMeansCode-2.1.json",
+    "SchemeIdentification": {
+      "listAgencyName": "United Nations Economic Commission for Europe",
+      "ListID": "UN/ECE 4461",
+      "listSchemeURI": "urn:un:unece:uncefact:codelist:standard:UNECE:PaymentMeansCode:D10B",
+      "ListName": "PaymentMeansCode",
+      "listAgencyID": "UN/ECE",
+      "listVersionID": "D10B"
+    },
+    "Codes": [
+      {
+        "Code": "1",
+        "Name": "Instrument not defined"
+      },
+      {
+        "Code": "2",
+        "Name": "Automated clearing house credit"
+      },
+      {
+        "Code": "3",
+        "Name": "Automated clearing house debit"
+      },
+      {
+        "Code": "4",
+        "Name": "ACH demand debit reversal"
+      },
+      {
+        "Code": "5",
+        "Name": "ACH demand credit reversal"
+      },
+      {
+        "Code": "6",
+        "Name": "ACH demand credit"
+      },
+      {
+        "Code": "7",
+        "Name": "ACH demand debit"
+      },
+      {
+        "Code": "8",
+        "Name": "Hold"
+      },
+      {
+        "Code": "9",
+        "Name": "National or regional clearing"
+      },
+      {
+        "Code": "10",
+        "Name": "In cash"
+      },
+      {
+        "Code": "11",
+        "Name": "ACH savings credit reversal"
+      },
+      {
+        "Code": "12",
+        "Name": "ACH savings debit reversal"
+      },
+      {
+        "Code": "13",
+        "Name": "ACH savings credit"
+      },
+      {
+        "Code": "14",
+        "Name": "ACH savings debit"
+      },
+      {
+        "Code": "15",
+        "Name": "Bookentry credit"
+      },
+      {
+        "Code": "16",
+        "Name": "Bookentry debit"
+      },
+      {
+        "Code": "17",
+        "Name": "ACH demand cash concentration/disbursement (CCD) credit"
+      },
+      {
+        "Code": "18",
+        "Name": "ACH demand cash concentration/disbursement (CCD) debit"
+      },
+      {
+        "Code": "19",
+        "Name": "ACH demand corporate trade payment (CTP) credit"
+      },
+      {
+        "Code": "20",
+        "Name": "Cheque"
+      },
+      {
+        "Code": "21",
+        "Name": "Banker's draft"
+      },
+      {
+        "Code": "22",
+        "Name": "Certified banker's draft"
+      },
+      {
+        "Code": "23",
+        "Name": "Bank cheque (issued by a banking or similar establishment)"
+      },
+      {
+        "Code": "24",
+        "Name": "Bill of exchange awaiting acceptance"
+      },
+      {
+        "Code": "25",
+        "Name": "Certified cheque"
+      },
+      {
+        "Code": "26",
+        "Name": "Local cheque"
+      },
+      {
+        "Code": "27",
+        "Name": "ACH demand corporate trade payment (CTP) debit"
+      },
+      {
+        "Code": "28",
+        "Name": "ACH demand corporate trade exchange (CTX) credit"
+      },
+      {
+        "Code": "29",
+        "Name": "ACH demand corporate trade exchange (CTX) debit"
+      },
+      {
+        "Code": "30",
+        "Name": "Credit transfer"
+      },
+      {
+        "Code": "31",
+        "Name": "Debit transfer"
+      },
+      {
+        "Code": "32",
+        "Name": "ACH demand cash concentration/disbursement plus (CCD+) credit"
+      },
+      {
+        "Code": "33",
+        "Name": "ACH demand cash concentration/disbursement plus (CCD+) debit"
+      },
+      {
+        "Code": "34",
+        "Name": "ACH prearranged payment and deposit (PPD)"
+      },
+      {
+        "Code": "35",
+        "Name": "ACH savings cash concentration/disbursement (CCD) credit"
+      },
+      {
+        "Code": "36",
+        "Name": "ACH savings cash concentration/disbursement (CCD) debit"
+      },
+      {
+        "Code": "37",
+        "Name": "ACH savings corporate trade payment (CTP) credit"
+      },
+      {
+        "Code": "38",
+        "Name": "ACH savings corporate trade payment (CTP) debit"
+      },
+      {
+        "Code": "39",
+        "Name": "ACH savings corporate trade exchange (CTX) credit"
+      },
+      {
+        "Code": "40",
+        "Name": "ACH savings corporate trade exchange (CTX) debit"
+      },
+      {
+        "Code": "41",
+        "Name": "ACH savings cash concentration/disbursement plus (CCD+) credit"
+      },
+      {
+        "Code": "42",
+        "Name": "Payment to bank account"
+      },
+      {
+        "Code": "43",
+        "Name": "ACH savings cash concentration/disbursement plus (CCD+) debit"
+      },
+      {
+        "Code": "44",
+        "Name": "Accepted bill of exchange"
+      },
+      {
+        "Code": "45",
+        "Name": "Referenced home-banking credit transfer"
+      },
+      {
+        "Code": "46",
+        "Name": "Interbank debit transfer"
+      },
+      {
+        "Code": "47",
+        "Name": "Home-banking debit transfer"
+      },
+      {
+        "Code": "48",
+        "Name": "Bank card"
+      },
+      {
+        "Code": "49",
+        "Name": "Direct debit"
+      },
+      {
+        "Code": "50",
+        "Name": "Payment by postgiro"
+      },
+      {
+        "Code": "51",
+        "Name": "FR, norme 6 97-Telereglement CFONB (French Organisation for Banking Standards)  - Option A"
+      },
+      {
+        "Code": "52",
+        "Name": "Urgent commercial payment"
+      },
+      {
+        "Code": "53",
+        "Name": "Urgent Treasury Payment"
+      },
+      {
+        "Code": "60",
+        "Name": "Promissory note"
+      },
+      {
+        "Code": "61",
+        "Name": "Promissory note signed by the debtor"
+      },
+      {
+        "Code": "62",
+        "Name": "Promissory note signed by the debtor and endorsed by a bank"
+      },
+      {
+        "Code": "63",
+        "Name": "Promissory note signed by the debtor and endorsed by a third party"
+      },
+      {
+        "Code": "64",
+        "Name": "Promissory note signed by a bank"
+      },
+      {
+        "Code": "65",
+        "Name": "Promissory note signed by a bank and endorsed by another bank"
+      },
+      {
+        "Code": "66",
+        "Name": "Promissory note signed by a third party"
+      },
+      {
+        "Code": "67",
+        "Name": "Promissory note signed by a third party and endorsed by a bank"
+      },
+      {
+        "Code": "70",
+        "Name": "Bill drawn by the creditor on the debtor"
+      },
+      {
+        "Code": "74",
+        "Name": "Bill drawn by the creditor on a bank"
+      },
+      {
+        "Code": "75",
+        "Name": "Bill drawn by the creditor, endorsed by another bank"
+      },
+      {
+        "Code": "76",
+        "Name": "Bill drawn by the creditor on a bank and endorsed by a third party"
+      },
+      {
+        "Code": "77",
+        "Name": "Bill drawn by the creditor on a third party"
+      },
+      {
+        "Code": "78",
+        "Name": "Bill drawn by creditor on third party, accepted and endorsed by bank"
+      },
+      {
+        "Code": "91",
+        "Name": "Not transferable banker's draft"
+      },
+      {
+        "Code": "92",
+        "Name": "Not transferable local cheque"
+      },
+      {
+        "Code": "93",
+        "Name": "Reference giro"
+      },
+      {
+        "Code": "94",
+        "Name": "Urgent giro"
+      },
+      {
+        "Code": "95",
+        "Name": "Free format giro"
+      },
+      {
+        "Code": "96",
+        "Name": "Requested method for payment was not used"
+      },
+      {
+        "Code": "97",
+        "Name": "Clearing between partners"
+      },
+      {
+        "Code": "ZZZ",
+        "Name": "Mutually defined"
+      }
+    ]
+  }
+}

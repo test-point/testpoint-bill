@@ -12,7 +12,7 @@ router.post('/validator', function (req, res, next) {
         if (!error)
             error = InvoiceValidator(document.Invoice)
         if (error) {
-            var err = new Error(error);
+            var err = new Error(JSON.stringify(error));
             err.status = 400;
             next(err);
         } else {

@@ -35,7 +35,7 @@ function buildError(code, link, detail, pointer, parameter) {
     if (parameter)
         result["source"]["parameter"] = parameter
 
-    return JSON.stringify({"Error": result})
+    return result
 
 }
 

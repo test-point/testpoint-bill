@@ -2,7 +2,10 @@
  * Created by Kseniya on 1/21/2017.
  */
 var fs = require('fs');
-var ErrorBuilder = require('./ErrorCodeBuilder')
+var ErrorBuilder = require('./ErrorBuilder')
+var countryCodeValidator = require('./codes/countryCodeValidator')
+var currencyCodeValidator = require('./codes/currencyCodeValidator')
+var businessRule201 = require('./business/businessRule201')
 
 function validate(invoice) {
     if (!invoice) {
@@ -10,9 +13,16 @@ function validate(invoice) {
         return
     }
 
-    var errorCode = validate201(invoice)
-    if (!errorCode)
-        errorCode = validate203(invoice)
+    var errors = [];
+    errors.push.apply(errors, countryCodeValidator(invoice));
+    errors.push.apply(errors, currencyCodeValidator(invoice));
+    errors.push.apply(errors, businessRule201(invoice));
+
+    if (errors.length > 0) {
+        return {Errors: errors};
+    }
+
+    var errorCode = validate203(invoice)
     if (!errorCode)
         errorCode = validate204(invoice)
     if (!errorCode)
@@ -54,20 +64,10 @@ function validate(invoice) {
     if (!errorCode)
         errorCode = validate276(invoice)
     if (errorCode) {
-        return ErrorBuilder(errorCode);
+        return {Errors: [ErrorBuilder(errorCode)]};
     }
 }
 
-function validate201(invoice) {
-    if (invoice && invoice.legalMonetaryTotal && invoice.legalMonetaryTotal.payableAmount) {
-        var payableAmount = invoice.legalMonetaryTotal.payableAmount;
-        if (payableAmount >= 82.5) {
-            var code = invoice.invoiceTypeCode;
-            if (code != 388)
-                return 201
-        }
-    }
-}
 
 function validate203(invoice) {
     var check;

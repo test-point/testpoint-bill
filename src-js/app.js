@@ -35,12 +35,14 @@ app.use(express.static(__dirname + '/resources'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/spec/v1.0.0/Invoice.json').pipe(fs.createWriteStream('resources/schemas/Invoice.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/spec/v1.0.0/Response.json').pipe(fs.createWriteStream('resources/schemas/Response.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/ubl-json/spec/v1.0.0/Invoice.json').pipe(fs.createWriteStream('resources/schemas/Invoice.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/ubl-json/spec/v1.0.0/Response.json').pipe(fs.createWriteStream('resources/schemas/Response.json'));
 
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/codes/core/DocumentTypeCode-2.1.json').pipe(fs.createWriteStream('resources/codes/DocumentTypeCode-2.1.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/codes/core/AllowanceChargeReasonCode-2.1.json').pipe(fs.createWriteStream('resources/codes/AllowanceChargeReasonCode-2.1.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/codes/core/PaymentMeansCode-2.1.json').pipe(fs.createWriteStream('resources/codes/PaymentMeansCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/extended/DocumentTypeCode-2.1.json').pipe(fs.createWriteStream('resources/codes/DocumentTypeCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/AllowanceChargeReasonCode-2.1.json').pipe(fs.createWriteStream('resources/codes/AllowanceChargeReasonCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/PaymentMeansCode-2.1.json').pipe(fs.createWriteStream('resources/codes/PaymentMeansCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/CountryIdentificationCode-2.1.json').pipe(fs.createWriteStream('resources/codes/CountryIdentificationCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/CurrencyCode-2.1.json').pipe(fs.createWriteStream('resources/codes/CurrencyCode-2.1.json'));
 
 
 // catch 404 and forward to error handler
@@ -59,14 +61,21 @@ app.use(function (err, req, res, next) {
     // render the error page
     var status = err.status || 500;
     res.status(status);
+    console.log('err.message: ' + JSON.stringify(err.message))
     var message
     try {
         message = JSON.parse(err.message)
     } catch (e) {
         console.log("Error message is not a JSON object. Building an Error object");
-        message = {"Error": {"title": err.message}}
+        message = {"Error": {"code": status, "title": err.message}}
     }
-    res.end(JSON.stringify({Errors: message.Error}));
+    if (message.Errors) {
+        console.log('message.Errors' + message.Errors)
+        res.end(JSON.stringify({Errors: [message.Errors]}));
+    } else {
+        res.end(JSON.stringify({Errors: [message.Error]}));
+    }
+
 });
 
 

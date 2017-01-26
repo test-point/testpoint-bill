@@ -1,0 +1,407 @@
+{
+  "CodeList": {
+    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/ubl-json/codes/standard/AllowanceChargeReasonCode-2.1.json",
+    "SchemeIdentification": {
+      "listAgencyName": "United Nations Economic Commission for Europe",
+      "ListID": "UN/ECE 3155",
+      "listSchemeURI": "urn:un:unece:uncefact:codelist:standard:UNECE:AllowanceChargeReasonCode:D10B",
+      "ListName": "AllowanceChargeReasonCode",
+      "listAgencyID": "UN/ECE",
+      "listVersionID": "D10B"
+    },
+    "Codes": [
+      {
+        "Code": "1",
+        "Name": "Agreed settlement"
+      },
+      {
+        "Code": "2",
+        "Name": "Below specification goods"
+      },
+      {
+        "Code": "3",
+        "Name": "Damaged goods"
+      },
+      {
+        "Code": "4",
+        "Name": "Short delivery"
+      },
+      {
+        "Code": "5",
+        "Name": "Price query"
+      },
+      {
+        "Code": "6",
+        "Name": "Proof of delivery required"
+      },
+      {
+        "Code": "7",
+        "Name": "Payment on account"
+      },
+      {
+        "Code": "8",
+        "Name": "Returnable container charge included"
+      },
+      {
+        "Code": "9",
+        "Name": "Invoice error"
+      },
+      {
+        "Code": "10",
+        "Name": "Costs for draft"
+      },
+      {
+        "Code": "11",
+        "Name": "Bank charges"
+      },
+      {
+        "Code": "12",
+        "Name": "Agent commission"
+      },
+      {
+        "Code": "13",
+        "Name": "Counter claim"
+      },
+      {
+        "Code": "14",
+        "Name": "Wrong delivery"
+      },
+      {
+        "Code": "15",
+        "Name": "Goods returned to agent"
+      },
+      {
+        "Code": "16",
+        "Name": "Goods partly returned"
+      },
+      {
+        "Code": "17",
+        "Name": "Transport damage"
+      },
+      {
+        "Code": "18",
+        "Name": "Goods on consignment"
+      },
+      {
+        "Code": "19",
+        "Name": "Trade discount"
+      },
+      {
+        "Code": "20",
+        "Name": "Deduction for late delivery"
+      },
+      {
+        "Code": "21",
+        "Name": "Advertising costs"
+      },
+      {
+        "Code": "22",
+        "Name": "Customs duties"
+      },
+      {
+        "Code": "23",
+        "Name": "Telephone and postal costs"
+      },
+      {
+        "Code": "24",
+        "Name": "Repair costs"
+      },
+      {
+        "Code": "25",
+        "Name": "Attorney fees"
+      },
+      {
+        "Code": "26",
+        "Name": "Taxes"
+      },
+      {
+        "Code": "27",
+        "Name": "Reclaimed deduction"
+      },
+      {
+        "Code": "28",
+        "Name": "See separate advice"
+      },
+      {
+        "Code": "29",
+        "Name": "Buyer refused to take delivery"
+      },
+      {
+        "Code": "30",
+        "Name": "Direct payment to seller"
+      },
+      {
+        "Code": "31",
+        "Name": "Buyer disagrees with due date"
+      },
+      {
+        "Code": "32",
+        "Name": "Goods not delivered"
+      },
+      {
+        "Code": "33",
+        "Name": "Late delivery"
+      },
+      {
+        "Code": "34",
+        "Name": "Quoted as paid to you"
+      },
+      {
+        "Code": "35",
+        "Name": "Goods returned"
+      },
+      {
+        "Code": "36",
+        "Name": "Invoice not received"
+      },
+      {
+        "Code": "37",
+        "Name": "Credit note to debtor/not to us"
+      },
+      {
+        "Code": "38",
+        "Name": "Deducted bonus"
+      },
+      {
+        "Code": "39",
+        "Name": "Deducted discount"
+      },
+      {
+        "Code": "40",
+        "Name": "Deducted freight costs"
+      },
+      {
+        "Code": "41",
+        "Name": "Deduction against other invoices"
+      },
+      {
+        "Code": "42",
+        "Name": "Credit balance(s)"
+      },
+      {
+        "Code": "43",
+        "Name": "Reason unknown"
+      },
+      {
+        "Code": "44",
+        "Name": "Awaiting message from seller"
+      },
+      {
+        "Code": "45",
+        "Name": "Debit note to seller"
+      },
+      {
+        "Code": "46",
+        "Name": "Discount beyond terms"
+      },
+      {
+        "Code": "47",
+        "Name": "See buyer's letter"
+      },
+      {
+        "Code": "48",
+        "Name": "Allowance/charge error"
+      },
+      {
+        "Code": "49",
+        "Name": "Substitute product"
+      },
+      {
+        "Code": "50",
+        "Name": "Terms of sale error"
+      },
+      {
+        "Code": "51",
+        "Name": "Required data missing"
+      },
+      {
+        "Code": "52",
+        "Name": "Wrong invoice"
+      },
+      {
+        "Code": "53",
+        "Name": "Duplicate invoice"
+      },
+      {
+        "Code": "54",
+        "Name": "Weight error"
+      },
+      {
+        "Code": "55",
+        "Name": "Additional charge not authorized"
+      },
+      {
+        "Code": "56",
+        "Name": "Incorrect discount"
+      },
+      {
+        "Code": "57",
+        "Name": "Price change"
+      },
+      {
+        "Code": "58",
+        "Name": "Variation"
+      },
+      {
+        "Code": "59",
+        "Name": "Chargeback"
+      },
+      {
+        "Code": "60",
+        "Name": "Offset"
+      },
+      {
+        "Code": "61",
+        "Name": "Indirect payment"
+      },
+      {
+        "Code": "62",
+        "Name": "Financial reassignment"
+      },
+      {
+        "Code": "63",
+        "Name": "Reinstatement of chargeback/offset"
+      },
+      {
+        "Code": "64",
+        "Name": "Expecting new terms"
+      },
+      {
+        "Code": "65",
+        "Name": "Settlement to agent"
+      },
+      {
+        "Code": "66",
+        "Name": "Cash discount"
+      },
+      {
+        "Code": "67",
+        "Name": "Delcredere costs"
+      },
+      {
+        "Code": "68",
+        "Name": "Early payment allowance adjustment"
+      },
+      {
+        "Code": "69",
+        "Name": "Incorrect due date for monetary amount"
+      },
+      {
+        "Code": "70",
+        "Name": "Wrong monetary amount resulting from incorrect free goods quantity"
+      },
+      {
+        "Code": "71",
+        "Name": "Rack or shelf replenishment service by a supplier"
+      },
+      {
+        "Code": "72",
+        "Name": "Temporary special promotion"
+      },
+      {
+        "Code": "73",
+        "Name": "Difference in tax rate"
+      },
+      {
+        "Code": "74",
+        "Name": "Quantity discount"
+      },
+      {
+        "Code": "75",
+        "Name": "Promotion discount"
+      },
+      {
+        "Code": "76",
+        "Name": "Cancellation deadline passed"
+      },
+      {
+        "Code": "77",
+        "Name": "Pricing discount"
+      },
+      {
+        "Code": "78",
+        "Name": "Volume discount"
+      },
+      {
+        "Code": "79",
+        "Name": "Sundry discount"
+      },
+      {
+        "Code": "80",
+        "Name": "Card holder signature missing"
+      },
+      {
+        "Code": "81",
+        "Name": "Card expiry date missing"
+      },
+      {
+        "Code": "82",
+        "Name": "Card number error"
+      },
+      {
+        "Code": "83",
+        "Name": "Card expired"
+      },
+      {
+        "Code": "84",
+        "Name": "Test card transaction"
+      },
+      {
+        "Code": "85",
+        "Name": "Permission limit exceeded"
+      },
+      {
+        "Code": "86",
+        "Name": "Wrong authorisation code"
+      },
+      {
+        "Code": "87",
+        "Name": "Wrong authorised amount"
+      },
+      {
+        "Code": "88",
+        "Name": "Authorisation failed"
+      },
+      {
+        "Code": "89",
+        "Name": "Card acceptor data error"
+      },
+      {
+        "Code": "90",
+        "Name": "Treasury management service charge"
+      },
+      {
+        "Code": "91",
+        "Name": "Agreed discount"
+      },
+      {
+        "Code": "92",
+        "Name": "Expediting fee"
+      },
+      {
+        "Code": "93",
+        "Name": "Invoicing fee"
+      },
+      {
+        "Code": "94",
+        "Name": "Freight charge"
+      },
+      {
+        "Code": "95",
+        "Name": "Small order processing service charge"
+      },
+      {
+        "Code": "96",
+        "Name": "Currency exchange differences"
+      },
+      {
+        "Code": "97",
+        "Name": "Insolvency"
+      },
+      {
+        "Code": "ZZZ",
+        "Name": "Mutually defined"
+      }
+    ]
+  }
+}

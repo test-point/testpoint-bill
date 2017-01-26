@@ -2,6 +2,18 @@
  * Created by Kseniya on 1/21/2017.
  */
 var ErrorCodes = {
+    "Code-01": {
+        "title": "There is no code list for scheme",
+        "detail": "The value {code value} for data item {data element name} cannot be validated because there is no code list for scheme {schemeURI}."
+    },
+    "Code-02": {
+        "title": "The code value is not valid",
+        "detail": "The value {code value} for data item {data element name} is not valid in {list name} code list."
+    },
+    "Code-201": {
+        "title": "An Invoice of more than $82.50 (including GST) to a GST-registered Buyer MUST be a Tax Invoice.",
+        "detail": "The value {value} of the Amount Payable is more than $82.50, but Invoice Document Type {invoice type code} is not a Tax Invoice."
+    },
     100: "Document is not valid against its schema.",
     101: "Missing required request parameter.",
     201: "An Invoice of more than $82.50 (including GST) to a GST-registered Buyer MUST be a Tax Invoice.",

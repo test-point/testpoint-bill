@@ -4,9 +4,10 @@
 var fs = require('fs');
 var Ajv = require('ajv');
 var parse = require('parse-link-header');
-var ErrorBuilder = require('./ErrorCodeBuilder')
+var ErrorBuilder = require('./ErrorBuilder')
 
 function validate(document, reqLinkHeader, next) {
+    var errors = [];
     var ajv = new Ajv();
     var linkHeader = parse(reqLinkHeader)
     var jsonSchema, validate, documentType;
@@ -39,8 +40,13 @@ function validate(document, reqLinkHeader, next) {
         console.log('Validation failed.');
         console.log('Validation errors:');
         console.error(validate.errors);
-        return translateSchemaValidationError(validate.errors[0], "100");
+        for (i in validate.errors) {
+            var error = translateSchemaValidationError(validate.errors[i], "100");
+            errors.push(error);
+        }
     }
+    if (errors.length > 0)
+        return {Errors: errors};
 }
 
 function translateSchemaValidationError(error, code) {

@@ -1,5 +1,5 @@
 {
-  "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/ubl-json/codes/extended/DocumentTypeCode-2.1.json",
+  "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/syn/codes/extended/DocumentTypeCode-2.1.json",
   "SchemeIdentification": {
     "listAgencyName": "United Nations Economic Commission for Europe",
     "listSchemeURI": "urn:un:unece:uncefact:codelist:standard:UNECE:DocumentNameCodeAccounting:D10B",

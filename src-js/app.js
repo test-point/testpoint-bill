@@ -35,14 +35,14 @@ app.use(express.static(__dirname + '/resources'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/ubl-json/spec/v1.0.0/Invoice.json').pipe(fs.createWriteStream('resources/schemas/Invoice.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/ubl-json/spec/v1.0.0/Response.json').pipe(fs.createWriteStream('resources/schemas/Response.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/syn/spec/v1.0.0/Invoice.json').pipe(fs.createWriteStream('resources/schemas/Invoice.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-bill/master/syn/spec/v1.0.0/Response.json').pipe(fs.createWriteStream('resources/schemas/Response.json'));
 
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/extended/DocumentTypeCode-2.1.json').pipe(fs.createWriteStream('resources/codes/DocumentTypeCode-2.1.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/AllowanceChargeReasonCode-2.1.json').pipe(fs.createWriteStream('resources/codes/AllowanceChargeReasonCode-2.1.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/PaymentMeansCode-2.1.json').pipe(fs.createWriteStream('resources/codes/PaymentMeansCode-2.1.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/CountryIdentificationCode-2.1.json').pipe(fs.createWriteStream('resources/codes/CountryIdentificationCode-2.1.json'));
-request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/ubl-json/codes/standard/CurrencyCode-2.1.json').pipe(fs.createWriteStream('resources/codes/CurrencyCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/syn/codes/extended/DocumentTypeCode-2.1.json').pipe(fs.createWriteStream('resources/codes/DocumentTypeCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/syn/codes/standard/AllowanceChargeReasonCode-2.1.json').pipe(fs.createWriteStream('resources/codes/AllowanceChargeReasonCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/syn/codes/standard/PaymentMeansCode-2.1.json').pipe(fs.createWriteStream('resources/codes/PaymentMeansCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/syn/codes/standard/CountryIdentificationCode-2.1.json').pipe(fs.createWriteStream('resources/codes/CountryIdentificationCode-2.1.json'));
+request('https://raw.githubusercontent.com/ausdigital/ausdigital-code/master/syn/codes/standard/CurrencyCode-2.1.json').pipe(fs.createWriteStream('resources/codes/CurrencyCode-2.1.json'));
 
 
 // catch 404 and forward to error handler

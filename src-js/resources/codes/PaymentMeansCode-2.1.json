@@ -1,6 +1,6 @@
 {
   "CodeList": {
-    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/ubl-json/codes/standard/PaymentMeansCode-2.1.json",
+    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/syn/codes/standard/PaymentMeansCode-2.1.json",
     "SchemeIdentification": {
       "listAgencyName": "United Nations Economic Commission for Europe",
       "ListID": "UN/ECE 4461",

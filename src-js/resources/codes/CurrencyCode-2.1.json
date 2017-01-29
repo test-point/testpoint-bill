@@ -1,6 +1,6 @@
 {
   "CodeList": {
-    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/ubl-json/codes/standard/CurrencyCode-2.1.json",
+    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/syn/codes/standard/CurrencyCode-2.1.json",
     "SchemeIdentification": {
       "listAgencyName": "International Organization for Standardization",
       "ListID": "ISO 4217 Alpha",

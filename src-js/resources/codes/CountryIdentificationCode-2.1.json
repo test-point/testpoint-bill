@@ -1,6 +1,6 @@
 {
   "CodeList": {
-    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/ubl-json/codes/standard/CountryIdentificationCode-2.1.json",
+    "ListURI": "https://github.com/ausdigital/ausdigital-code/tree/master/syn/codes/standard/CountryIdentificationCode-2.1.json",
     "SchemeIdentification": {
       "listAgencyName": "International Organization for Standardization",
       "listSchemeURI": "urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-12",

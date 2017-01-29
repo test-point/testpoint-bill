@@ -1,5 +1,5 @@
-# The AusDigital UBL JSON Format reference implementation 
-A JSON &lt;-> XML validation service for JSON UBL messages.
+# The AusDigital UBL Syntax 2.0 Specification reference implementation 
+A JSON &lt;-> XML validation service for UBL JSON messages.
 
 Node JS Express web application.
 

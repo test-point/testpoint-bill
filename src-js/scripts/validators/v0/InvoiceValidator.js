@@ -19,7 +19,7 @@ function validate(invoice) {
     errors.push.apply(errors, businessRule201(invoice));
 
     if (errors.length > 0) {
-        return {Errors: errors};
+        return {errors: errors};
     }
 
     var errorCode = validate203(invoice)
@@ -64,7 +64,7 @@ function validate(invoice) {
     if (!errorCode)
         errorCode = validate276(invoice)
     if (errorCode) {
-        return {Errors: [ErrorBuilder(errorCode)]};
+        return {errors: [ErrorBuilder(errorCode)]};
     }
 }
 

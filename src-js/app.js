@@ -61,20 +61,14 @@ app.use(function (err, req, res, next) {
     // render the error page
     var status = err.status || 500;
     res.status(status);
-    console.log('err.message: ' + JSON.stringify(err.message))
-    var message
+    var errMessage;
     try {
-        message = JSON.parse(err.message)
+        errMessage = JSON.parse(err.message);
     } catch (e) {
-        console.log("Error message is not a JSON object. Building an Error object");
-        message = {"Error": {"code": status, "title": err.message}}
+        console.log("building error model for " + err.message);
+        errMessage = {errors: [{"title": err.message}]};
     }
-    if (message.Errors) {
-        console.log('message.Errors' + message.Errors)
-        res.end(JSON.stringify({Errors: [message.Errors]}));
-    } else {
-        res.end(JSON.stringify({Errors: [message.Error]}));
-    }
+    res.end(JSON.stringify(errMessage));
 
 });
 

@@ -46,7 +46,7 @@ function validate(document, reqLinkHeader, next) {
         }
     }
     if (errors.length > 0)
-        return {Errors: errors};
+        return {rrors: errors};
 }
 
 function translateSchemaValidationError(error, code) {

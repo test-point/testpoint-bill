@@ -41,10 +41,7 @@ class ResponseCodes
         208 => [
             'title' => 'An Invoice MUST contain the sum total of all Invoice Line Extension Amounts.',
         ],
-        //covered by json schema - invoiceLine.taxTotal.taxAmount
-        209 => [
-            'title' => 'An Invoice Line MUST contain the GST Amount for the Items sold or indicate the extent to which Items are taxable.',
-        ],
+
         210 => [
             'title' => 'An Invoice Line MUST contain the Amount Payable (Invoice Line Extension Amount plus GST Amount) for the Items sold.',
         ],
@@ -122,10 +119,6 @@ class ResponseCodes
 
         229 => [
             'title' => 'An Invoice Line Price MUST be 0 or more.',
-        ],
-        //required by schema
-        230 => [
-            'title' => 'An Invoice Line Item MUST have a Net Price.',
         ],
 
         231 => [

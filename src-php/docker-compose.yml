@@ -1,0 +1,8 @@
+version: '2'
+services:
+  web:
+    build: .
+    image: testpoint-bill:latest
+    container_name: testpoint-bill
+    ports:
+      - "3031:80"
